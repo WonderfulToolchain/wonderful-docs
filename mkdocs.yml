@@ -1,5 +1,6 @@
-site_name: Wonderful Toolchain documentation
+site_name: Wonderful Toolchain Documentation
 site_url: https://wonderful.asie.pl/doc/general
 site_description: General documentation pertaining to the toolchain.
+copyright: Copyright (c) 2022 Adrian Siekierka and contributors. This work is licensed under CC BY-SA 4.0.
 theme:
     name: readthedocs

@@ -48,6 +48,8 @@ The WonderSwan is a handheld console released by Bandai in March 1999, with an e
 The Wonderful toolchain for WonderSwan is based on [gcc-ia16](https://github.com/tkchia/build-ia16/), a fork of GCC 6.3.0 targetting 8086-class CPUs.
 Additional patches have been developed to feature a V30MZ-aware cost calculator for more effective optimization.
 
+Developing with C is well-supported up to C11. Developing with C++ (up to C++14) is theoretically viable, but currently not supported.
+
 Note: The NEC V30MZ uses distinct opcode and register naming compared to its compatible Intel counterpart. However, for the purposes of this toolchain,
 we will be exclusively using Intel names in documentation and code.
 
@@ -116,6 +118,10 @@ results in the following calling convention:
 * `AX`, `BX`, `CX`, `DX` can be modified by the callee,
 * `SI`, `DI`, `BP`, `DS`, `ES` must be saved by the callee - the value must not be changed after function return relative to the state at function entry.
 
+### Library documentation
+
+* [libws](/doc/libws) - WonderSwan hardware access library
+
 ## Installation instructions
 
 TODO
@@ -147,9 +153,10 @@ If you choose the WS Flash Masta, it is additionally recommended to install [Car
 
 #### EXT port adapter
 
- * [ExtFriend](https://github.com/WonderfulToolchain/ws-extfriend) - DIY option using an RP2040/Raspberry Pi Pico
- * [RetroOnyx's USB Link Cable](https://www.retroonyx.com/product-page/wonderswan-usb-link-cable) - $85
- * WonderWitch RS-232 adapter
+* [ExtFriend](https://github.com/WonderfulToolchain/ws-extfriend) - DIY option using an RP2040/Raspberry Pi Pico
+* [FTDI FT232RL DIY option](https://www.yaronet.com/topics/191502-cable-usb-wonderswan) (Warning: Requires a *genuine* FTDI FT232RL chip, not a clone)
+* [RetroOnyx's USB Link Cable](https://www.retroonyx.com/product-page/wonderswan-usb-link-cable) - $85
+* WonderWitch RS-232 adapter
 
 ## Caveats
 
@@ -181,7 +188,7 @@ static void call_from_my_function_table(uint8_t index) {
 
 * Counter-intuitively, using `-fno-function-sections` in the "medium" memory model can generate *smaller* and *faster* code:
     * In `-ffunction-sections` mode, each *function* is put in its own segment (16-byte alignment), necessiating the use of far calls (10 CPU cycles).
-     In `-fno-function-sections` mode, each *compilation unit* is put in its own segment, allowing for more tightly packed code. While all functions are still using "far" calls, an optimization can be made reducing the cost of the call to 7 CPU cycles.
+     In `-fno-function-sections` mode, each *compilation unit* is put in its own segment, allowing for more tightly packed code. While all functions are still using "far" calls, an optimization can be made reducing the cost of calls within the same compilation unit to 7 CPU cycles.
 
 ### Assembler
 
