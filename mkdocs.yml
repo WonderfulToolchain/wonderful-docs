@@ -1,0 +1,4 @@
+site_name: Wonderful Toolchain documentation
+site_url: https://wonderful.asie.pl/doc/general
+theme:
+    name: readthedocs
