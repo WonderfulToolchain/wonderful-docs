@@ -1,4 +1,4 @@
-# Getting started/Installation
+# Getting Started/Installation
 
 ## Linux
 

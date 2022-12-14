@@ -43,6 +43,17 @@ The WonderSwan is a handheld console released by Bandai in March 1999, with an e
     * Color:
         * General ROM->RAM DMA support
 
+## Hardware documentation
+
+ * **[STSWS](http://perfectkiosk.net/stsws.html)** - the most recent documentation source.
+ * **[WSMan](http://daifukkat.su/docs/wsman/)** - contains some information not yet in STSWS.
+ * [Everything You Never Wanted to Know about the WonderSwan RTC](https://forums.nesdev.org/viewtopic.php?t=21513)
+
+Datasheets for some components are available:
+
+ * [NEC V30MZ Preliminary User's Manual](https://www.renesas.com/us/en/document/lbr/v30mztm-hardware-preliminary)
+ * [Seiko S-3511A RTC](http://perfectkiosk.net/S-3511A.pdf)
+
 ## Toolchain overview
 
 The Wonderful toolchain for WonderSwan is based on [gcc-ia16](https://github.com/tkchia/build-ia16/), a fork of GCC 6.3.0 targetting 8086-class CPUs.
@@ -157,6 +168,7 @@ If you choose the WS Flash Masta, it is additionally recommended to install [Car
 * [FTDI FT232RL DIY option](https://www.yaronet.com/topics/191502-cable-usb-wonderswan) (Warning: Requires a *genuine* FTDI FT232RL chip, not a clone)
 * [RetroOnyx's USB Link Cable](https://www.retroonyx.com/product-page/wonderswan-usb-link-cable) - $85
 * WonderWitch RS-232 adapter
+* WonderWave IrDA adapter + USB IrDA adapter - allegedly 9600 bps only; if you're adventurous
 
 ## Caveats
 
@@ -177,7 +189,7 @@ void write_text(uint8_t x, uint8_t y, const char __far *text); // accepts RAM an
 ```
 
 * Jump and switch tables in higher optimization modes are also stored in the near data segment. There is no known workaround for this, so jump/switch table generation must be disabled using the `-fno-jump-tables` argument to save RAM.
-* When calling pointers from arrays of far function pointers in optimization modes >= `-O1`, the code will be miscompiled. This is [a known issue](https://github.com/tkchia/gcc-ia16/issues/120), with no ETA for a fix. One can work around this by annotating the affected function to be compiled without optimizations:
+* In some cases, when calling pointers from arrays of far function pointers in optimization modes >= `-O1`, the code will be miscompiled. This is [a known issue](https://github.com/tkchia/gcc-ia16/issues/120), with no ETA for a fix. One can work around this by annotating the affected function to be compiled without optimizations:
 
 ```c
 __attribute__((optimize("-O0"))) // https://github.com/tkchia/gcc-ia16/issues/120
@@ -196,4 +208,22 @@ static void call_from_my_function_table(uint8_t index) {
 
 ## Target: WonderWitch
 
-TODO. This is experimental and not well supported.
+The WonderWitch is an official homebrew development environment provided by [Qute Corporation](http://wonderwitch.qute.co.jp/).
+Because of the awkward licensing terms and dated restrictions of the original software, a decision has been made to try and implement
+the target from scratch, using gcc-ia16's modern compiler like in the WonderSwan target. Unfortunately, this poses some challenges:
+
+* While most of the WonderWitch's programming interface is abstracted away via FreyaBIOS (WonderSwan-side system software) interrupt calls,
+  some (such as WonderSwan Color routines, dynamic libraries, and file access) are not.
+* Under the WonderWitch environment, the data segment points to SRAM (segment 0x1000), while the stack segment points to console RAM
+  (segment 0x0000). DS != SS is a somewhat uncommon thorn in 8086 C development and, as such, has limited support. Importantly, unlike
+  many compilers that came before it, gcc-ia16 is capable of emitting errors when a near stack-originating pointer is mistakenly used as
+  a near data-originating pointer, and vice versa.
+
+An important advantage of `libww` (Wonderful's reimplementation of the WonderWitch libraries) is that it is capable of inlining ASM calls
+to such FreyaBIOS interrupts, saving the cost of `call` and `ret` instructions on them as a result, as well as allowing the compiler
+to allocate and reorder register usage accordingly.
+
+The current status of the WonderWitch target is experimental. It is capable of compiling some non-trivial programs (such as [WWTerm](https://github.com/WonderfulToolchain/WWTerm/)),
+but not all components of the original libraries are appropriately supported, and miscompilations/compiler ICEs may occasionally happen.
+As a native WonderSwan target is available and acquiring legitimate WonderWitch cartridges is getting much more expensive than aftermarket
+flashcarts, there is less interest in polishing the WonderWitch target - however, contributions are welcome!
