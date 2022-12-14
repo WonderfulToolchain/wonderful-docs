@@ -1,4 +1,4 @@
-# Target: WonderSwan
+# Target: WonderSwan (ASM/C)
 
 ## Hardware overview
 
