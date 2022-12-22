@@ -201,6 +201,7 @@ static void call_from_my_function_table(uint8_t index) {
 * Counter-intuitively, using `-fno-function-sections` in the "medium" memory model can generate *smaller* and *faster* code:
     * In `-ffunction-sections` mode, each *function* is put in its own segment (16-byte alignment), necessiating the use of far calls (10 CPU cycles).
      In `-fno-function-sections` mode, each *compilation unit* is put in its own segment, allowing for more tightly packed code. While all functions are still using "far" calls, an optimization can be made reducing the cost of calls within the same compilation unit to 7 CPU cycles.
+* ELF debug symbols are currently not supported, but will be eventually - see [gcc-ia16/#127](https://github.com/tkchia/gcc-ia16/pull/127).
 
 ### Assembler
 

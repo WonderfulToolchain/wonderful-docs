@@ -17,11 +17,12 @@ x86_64 is best supported; ARMv6 and AArch64 receive slower/less frequent updates
     * [Bootstrap (x86_64)](/bootstrap/wf-bootstrap-x86_64.tar.gz)
     * [Bootstrap (AArch64)](/bootstrap/wf-bootstrap-aarch64.tar.gz)
     * [Bootstrap (ARMv6)](/bootstrap/wf-bootstrap-arm32v6.tar.gz)
-2. Create the `/opt/wonderful` directory and give permissions to the user who will make use of the toolchain (f.e. `chown -R [user] /opt/wonderful`)
-3. Extract the bootstrap to `/opt/wonderful`. Other installation locations are not supported.
-4. Export *WONDERFUL_TOOLCHAIN* to point to `/opt/wonderful` (f.e. `export WONDERFUL_TOOLCHAIN=/opt/wonderful`).
-5. Add `/opt/wonderful/bin` to *PATH* (f.e. `export PATH=/opt/wonderful/bin:$PATH`).
-6. Run `wf-pacman -Syu` (no sudo - you don't need root) to synchronize and update the toolchain's package manager.
+2. Create the `/opt/wonderful` directory: `mkdir /opt/wonderful`.
+3. Give permissions to said directory the user who will make use of the toolchain (f.e. `chown -R [user] /opt/wonderful`)
+4. Extract the bootstrap to `/opt/wonderful` (f.e. `cd /opt/wonderful/ && tar xzvf [path_to_bootstrap_tar_gz]`). Other installation locations are not supported.
+5. Export *WONDERFUL_TOOLCHAIN* to point to `/opt/wonderful` (f.e. `export WONDERFUL_TOOLCHAIN=/opt/wonderful`).
+6. Add `/opt/wonderful/bin` to *PATH* (f.e. `export PATH=/opt/wonderful/bin:$PATH`).
+7. Run `wf-pacman -Syu` (no sudo - you don't need root) to synchronize and update the toolchain's package manager.
 
 For further installation instructions, refer to the specific target(s) you'd like to work with.
 
