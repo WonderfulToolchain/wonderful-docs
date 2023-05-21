@@ -1,6 +1,8 @@
 ---
-title: Welcome!
-type: docs
+title: "Wonderful Toolchain"
+description: "The Wonderful Toolchain is an assortment of development toolchains for retro and/or embedded platforms."
+images:
+  - logo-og.png
 ---
 
 # Welcome!

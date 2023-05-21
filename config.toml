@@ -1,6 +1,8 @@
 baseURL = 'https://wonderful.asie.pl/'
 languageCode = 'en-us'
 title = 'Wonderful Toolchain'
+description = 'The Wonderful Toolchain is an assortment of development toolchains for retro and/or embedded platforms.'
+images = ['logo-og.png']
 theme = 'hugo-book'
 disableKinds = ["taxonomy", "term"]
 ignoreErrors = ["error-disable-taxonomy"] 
