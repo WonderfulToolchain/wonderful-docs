@@ -1,0 +1,14 @@
+baseURL = 'https://wonderful.asie.pl/'
+languageCode = 'en-us'
+title = 'Wonderful Toolchain'
+theme = 'hugo-book'
+disableKinds = ["taxonomy", "term"]
+ignoreErrors = ["error-disable-taxonomy"] 
+
+[params]
+BookTheme = 'auto'
+BookLogo = 'logo.png'
+BookSearch = false
+
+[markup.goldmark.renderer]
+unsafe = true
