@@ -195,7 +195,6 @@ void write_text(uint8_t x, uint8_t y, const char *text); // only accepts RAM poi
 void write_text(uint8_t x, uint8_t y, const char __far *text); // accepts RAM and ROM pointers
 ```
 
-* Jump and switch tables in higher optimization modes are also stored in the near data segment. There is no known workaround for this, so jump/switch table generation must be disabled using the `-fno-jump-tables` argument to save RAM.
 * In some cases, when calling pointers from arrays of far function pointers in optimization modes >= `-O1`, the code will be miscompiled. This is [a known issue](https://github.com/tkchia/gcc-ia16/issues/120), with no ETA for a fix. One can work around this by annotating the affected function to be compiled without optimizations:
 
 ```c
