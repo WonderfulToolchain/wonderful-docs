@@ -211,8 +211,6 @@ static void call_from_my_function_table(uint8_t index) {
 
 ### Assembler
 
-* Using the *segment* of a global symbol in code is currently only possible with a hack - see [binutils-ia16/#6](https://github.com/tkchia/binutils-ia16/issues/6) for a bug report.
-
 ## WonderWitch
 
 The WonderWitch is an official homebrew development environment provided by [Qute Corporation](http://wonderwitch.qute.co.jp/).
