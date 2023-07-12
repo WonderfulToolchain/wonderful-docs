@@ -29,6 +29,7 @@ To install Wonderful on your computer, you will need:
 6. Run `wf-pacman -Syu` (no sudo - you don't need root) to synchronize and update the toolchain's package manager.
 
 Once you're done, feel free to install the necessary tools for the target of your choice by following the target-specific instructions.
+You may also want to visit [our Discord server](https://discord.gg/CR7MCZNurp) to chat with fellow Wonderful users - an IRC bridge may also be provided, if user demand exists.
 
 <!--    * [Bootstrap (ARMv6)](/bootstrap/wf-bootstrap-arm32v6.tar.gz) -->
 
