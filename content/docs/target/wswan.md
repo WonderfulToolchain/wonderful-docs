@@ -184,15 +184,23 @@ If you choose the WS Flash Masta, it is additionally recommended to install [Car
 While gcc-ia16 offers [competitive code generation and optimization](https://wiki.asie.pl/doku.php?id=notes:homebrew:8086_cc_performance) for the architecture, it is a little hackier than dedicated 8086 C compiler solutions.
 
 * In the "small" and "medium" memory models, data is passed around using near pointers, which are limited to RAM. This means that *near* read-only data
-  will end up being copied from ROM to RAM, using up limited heap memory, unless they are declared as *far*. For example:
+  will end up being copied from ROM to RAM, using up limited heap memory, unless they are declared as *far*.
+
+Note, though, that *far* read-only data is not supported on the wwitch target. As such, Wonderful provides a *__wf_rom* define that ensures correct
+behaviour on both targets.
+
+Here's an example:
 
 ```c
 const int8_t neighbor_delta_x[4] = {0, 0, -1, 1}; // stored in RAM
-const int8_t __far neighbor_delta_y[4] = {-1, 1, 0, 0}; // stored in ROM
+const int8_t __wf_rom neighbor_delta_y[4] = {-1, 1, 0, 0}; // stored in ROM
+// __wf_rom is defined to __far on wswan, and nothing on wwitch
 
-// this affects functions as well
-void write_text(uint8_t x, uint8_t y, const char *text); // only accepts RAM pointers
-void write_text(uint8_t x, uint8_t y, const char __far *text); // accepts RAM and ROM pointers
+// pointer address space modifiers affect functions as well
+void write_text(uint8_t x, uint8_t y, const char *text); // only accepts near data pointers (IRAM on wswan, SRAM on wwitch)
+void write_text(uint8_t x, uint8_t y, const char __seg_ss *text); // wwitch only: accepts near stack pointers (IRAM)
+void write_text(uint8_t x, uint8_t y, const char __wf_iram *text); // only accepts near IRAM pointers
+void write_text(uint8_t x, uint8_t y, const char __far *text); // accepts all pointers (ROM, IRAM, SRAM)
 ```
 
 * In some cases, when calling pointers from arrays of far function pointers in optimization modes >= `-O1`, the code will be miscompiled. This is [a known issue](https://github.com/tkchia/gcc-ia16/issues/120), with no ETA for a fix. One can work around this by annotating the affected function to be compiled without optimizations:
