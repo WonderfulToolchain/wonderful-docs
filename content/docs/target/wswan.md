@@ -2,7 +2,7 @@
 title: "wswan"
 ---
 
-# "wswan" target
+# "wswan" target (WonderSwan/WonderWitch)
 
 ## Installation
 
@@ -10,7 +10,17 @@ title: "wswan"
 
 Examples and project templates are available in the [wf-wswan-examples](https://github.com/WonderfulToolchain/wf-wswan-examples) repository.
 
-Wonderful-provided development tools:
+## Toolchain library documentation
+
+* **[The Swan Book](/doc/wswan/guide)** - (very early WIP) guide to developing homebrew for the WonderSwan with Wonderful
+
+### Library references
+
+* [libws](/doc/libws) - hardware access library
+* [libwsx](/doc/libwsx) - additional utilities library
+* [libww](/doc/libww) - FreyaBIOS/FreyaOS wrapper library for WonderWitch
+
+## Wonderful-maintained tools
 
 * [BootFriend](/ws/bootfriend) - custom console firmware allowing fastboot and running code from WSC/SC internal RAM without a flash cartridge,
 * [CartFriend](https://github.com/WonderfullToolchain/ws-cartfriend) - custom flash cartridge firmware with a homebrew-centric design,
@@ -57,21 +67,7 @@ The WonderSwan is a handheld console released by Bandai in March 1999, with an e
 
 More detailed hardware documentation is listed as part of [awesome-wsdev](https://github.com/WonderfulToolchain/awesome-wsdev).
 
-## Toolchain library documentation
-
-* [libws](/doc/libws) - hardware access library
-* [libwsx](/doc/libwsx) - additional utilities library
-* [libww](/doc/libww) - FreyaBIOS/FreyaOS wrapper library for WonderWitch
-
 ## Toolchain overview
-
-The Wonderful toolchain for WonderSwan is based on [gcc-ia16](https://github.com/tkchia/build-ia16/), a fork of GCC 6.3.0 targetting 8086-class CPUs.
-Additional patches have been developed to feature a V30MZ-aware cost calculator for more effective optimization.
-
-Using the C programming language is well-supported up to C11, albeit with some caveats - see below.
-
-Note: While the NEC V30MZ uses distinct opcode and register naming compared to its compatible Intel counterpart in official documentation,
-the Wonderful toolchain exclusively uses Intel-provided names.
 
 ### Memory models
 
@@ -87,95 +83,6 @@ The Wonderful toolchain currently offers two memory models:
 
 In both cases, *data* is stored using *near* pointers by default, and thus points to RAM. This means that *data* stored in ROM
 must be explicitly declared as *far* - see [Caveats](#caveats) for an explanation on how to achieve this.
-
-### C&lt;-&gt;ASM Calling convention
-
-Wonderful currently uses the `20180813` version of the `regparmcall` calling convention, as defined by gcc-ia16.
-
-#### Function parameter passing
-
-For typical functions, the first three arguments or words, whichever comes first, are passed via the registers
-`AX`, `DX` and `CX`, in this order. Bytes are passed via `AL`, `DL` and `CL`. The remaining arguments are pushed
-onto the stack.
-
-Arguments are not split between registers and stack. A far pointer, or 32-bit integer, will be passed via `DX:AX`, `CX:DX`, or entirely on the stack.
-  
-For functions with *variable arguments*, all arguments are pushed onto the stack. It is the callee's responsibility to remove arguments off the stack.
-
-For example, the following function signature:
-
-```c
-    void outportw(uint8_t port, uint16_t value);
-```
-
-results in the following calling convention:
-
- * `AL` = `port`,
- * `DX` = `value`.
-
-The following function signature:
-
-```c
-    void __far* memcpy(void __far* s1, const void __far* s2, size_t n);
-```
-
-results in the following calling convention:
-
- * `DX:AX` = `s1`,
- * stack (4 bytes allocated) = `s2`,
- * stack (2 bytes allocated) = `n`,
- * return in `DX:AX`.
-
- The following function signature:
-
-```c
-    void __far* memcpy(void __far* s1, const void __far* s2, size_t n);
-```
-
-results in the following calling convention:
-
- * `DX:AX` = `s1`,
- * stack (4 bytes allocated) = `s2`,
- * stack (2 bytes allocated) = `n`,
- * return in `DX:AX`.
-
-#### Function call register allocation
-
-* `AX`, `BX`, `CX`, `DX` can be modified by the callee,
-* `SI`, `DI`, `BP`, `DS`, `ES` must be saved by the callee - the value must not be changed after function return relative to the state at function entry.
-
-## Testing homebrew
-
-### Emulation
-
-As of writing, the following emulators are recommended for testing WonderSwan homebrew:
-
-* Ares - higher accuracy, no built-in debugger
-* [Mednafen](https://mednafen.github.io/) - lower accuracy, comes with limited debugger
-
-At this time, neither is accurate enough to be considered indistinguishable from real hardware.
-
-### Real hardware
-
-To test WonderSwan homebrew on real hardware, you'll need a *flash cartridge* and, optionally, an *EXT port adapter* (for serial communications).
-
-#### Flash cartridge
-
- * [WS Flash Masta USB](https://www.flashmasta.com/product/ws-flash-masta-usb-cartridge-for-wonderswan/) - ~$100, ships from USA; 16 x 8MB slots, 512KB SRAM, RTC; flashable via USB port.
-
-Older flashcart solutions (WonderDog, WonderMagic Color, etc.) should also work, but have not been tested.
-
-**Note that using a WonderWitch cartridge is not recommended** - they are limited to 512KB of flash and may not be fully relashable. For such cartridges, consider using the dedicated WonderWitch target instead.
-
-If you choose the WS Flash Masta, it is additionally recommended to install [CartFriend](https://github.com/WonderfulToolchain/ws-cartfriend/releases/) - an alternate, more compatible and featureful launcher developed by the Wonderful team.
-
-#### EXT port adapter
-
-* [ExtFriend](https://github.com/WonderfulToolchain/ws-extfriend) - DIY option using an RP2040/Raspberry Pi Pico
-* [FTDI FT232RL DIY option](https://www.yaronet.com/topics/191502-cable-usb-wonderswan) (Warning: Requires a *genuine* FTDI FT232RL chip, not a clone)
-* [RetroOnyx's USB Link Cable](https://www.retroonyx.com/product-page/wonderswan-usb-link-cable) - $85
-* WonderWitch RS-232 adapter
-* WonderWave IrDA adapter + USB IrDA adapter - allegedly 9600 bps only; if you're adventurous
 
 ## Caveats
 
