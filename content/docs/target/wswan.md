@@ -26,47 +26,6 @@ Examples and project templates are available in the [wf-wswan-examples](https://
 * [CartFriend](https://github.com/WonderfullToolchain/ws-cartfriend) - custom flash cartridge firmware with a homebrew-centric design,
 * [ExtFriend](https://github.com/WonderfulToolchain/ws-extfriend) - DIY serial/headphone capture USB device, based on the RP2040/Raspberry Pi Pico.
 
-## Brief hardware overview
-
-The WonderSwan is a handheld console released by Bandai in March 1999, with an enhanced Color model released later that year.
-
-* NEC V30MZ (80186-compatible) CPU @ 3.072 MHz
-    * Note: The V30MZ performs many key operations in 1-3 cycles. It also features a prefetch queue and simple instruction pipeline. It is overall more powerful than a 3 MHz Intel 80186 chip would be.
-* 16KB (WS) / 64KB (WSC) of RAM - shared between software data, video data and audio wavetables
-* Graphics:
-    * ~75.47 Hz, 224x144 display + six developer-controlled LCD segments
-    * Mono:
-        * 2BPP tiles: 8 palettes x 4 shades and 8 palettes x 3 shades + transparency
-        * Palette: 8 out of 16 shades
-        * Up to 512 tiles
-    * Color:
-        * 2BPP tiles: 8 palettes x 4 colors and 8 palettes x 3 colors + transparency, 12-bit RGB
-        * 4BPP tiles: 16 palettes x 15 colors + transparency
-            * Planar and chunky storage supported
-        * Palette: 12-bit RGB
-        * Up to 1024 tiles (512 available for sprites)
-    * Two 32x32 background tile layers ("screens")
-    * Up to 128 8x8 sprites, up to 32 per line, built-in shadow memory
-    * Hardware horizontal/vertical flipping
-* Sound:
-    * Four wavetable (32 x 4-bit) channels
-    * 24000 Hz
-        * Internal speaker: 8-bit PCM
-        * Digital headphone output: 16-bit PCM
-    * Channel 2: optional sample mode 
-    * Channel 3: hardware sweep
-    * Channel 4: optional LFSR noise mode
-    * (Color) Hyper Voice: fifth "channel", stereo samples, headphone output only
-* Eleven keypad inputs (X1-X4, Y1-Y4, A, B, Start)
-* 9600/38400 bps UART (for console, computer or peripheral connectivity)
-* Cartridge:
-    * Up to 16MB (2001 mapper) or 64MB (2003 mapper) of ROM data
-    * Banking: two 64KB ROM banks + one 768KB ROM bank
-    * Optional SRAM (one 64KB bank) or EEPROM save data
-    * Optional real-time clock
-
-More detailed hardware documentation is listed as part of [awesome-wsdev](https://github.com/WonderfulToolchain/awesome-wsdev).
-
 ## Toolchain overview
 
 ### Memory models
