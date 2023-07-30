@@ -19,3 +19,11 @@
 	line-height: 1.4;
 	opacity: 0.5;
 }
+article img {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+article img.pixelated {
+	image-rendering: pixelated;
+}

@@ -7,12 +7,9 @@ images:
 
 # Welcome!
 
-The Wonderful Toolchain is an assortment of development toolchains for retro and/or embedded platforms, with particular focus on console homebrew development,
-as well as whatever scratches an itch on a given day.
+The Wonderful Toolchain is an assortment of development toolchains for a variety of retro and/or embedded platforms, with particular focus on console homebrew development - though really, it's all about whatever scratches an itch on a given day.
 
-This project is developed and maintained by [asie](https://asie.pl/), albeit without warranty - it is just a side quest.
-
-If you'd like to try it out and/or learn more, why don't we [get started](/docs/getting-started)?
+If you'd like to try it out and/or learn more, why don't we [get started](/docs/getting-started)? Feel free to also check out [our Discord server](https://discord.gg/CR7MCZNurp)!
 
 ## Targets
 

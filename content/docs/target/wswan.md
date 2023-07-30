@@ -10,9 +10,9 @@ title: "wswan"
 
 Examples and project templates are available in the [wf-wswan-examples](https://github.com/WonderfulToolchain/wf-wswan-examples) repository.
 
-## Toolchain library documentation
+## Documentation
 
-* **[The Swan Book](/doc/wswan/guide)** - (very early WIP) guide to developing homebrew for the WonderSwan with Wonderful
+* **[The Swan Book](/doc/wswan/guide)** - work-in-progress guide to developing homebrew for the WonderSwan with Wonderful
 
 ### Library references
 
@@ -27,6 +27,8 @@ Examples and project templates are available in the [wf-wswan-examples](https://
 * [ExtFriend](https://github.com/WonderfulToolchain/ws-extfriend) - DIY serial/headphone capture USB device, based on the RP2040/Raspberry Pi Pico.
 
 ## Toolchain overview
+
+**Most of the text below is in the process of being migrated to The Swan Book.**
 
 ### Memory models
 
