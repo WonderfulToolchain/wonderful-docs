@@ -27,7 +27,7 @@ The WonderSwan is a lot of things, which inspired me to work on...
 
 ## The Toolchain
 
-How hard could it be? In the end, it wasn't too difficult to get [gcc-ia16](https://github.com/tkchia/build-ia16/) to build and link code for the WonderSwan; what was considerably more difficult was exposing its strong suits and hiding its weakpoints from the end user.
+How hard could it be? In the end, it wasn't too difficult to get [gcc-ia16](https://gitlab.com/tkchia/build-ia16/) to build and link code for the WonderSwan; what was considerably more difficult was exposing its strong suits and hiding its weakpoints from the end user.
 
 The benefit of using gcc-ia16 is access to modern C standards (C11) and compiler optimizations; the old "official" toolchain, the [WonderWitch](http://wonderwitch.qute.co.jp), offered a mix of the Japan-specific LSI C compiler and the better-known Turbo C compiler. The drawback is that it's considerably less production-tested than the "old guard", having required [a](https://github.com/tkchia/gcc-ia16/issues/102) [few](https://github.com/tkchia/binutils-ia16/issues/6) [bugfixes](https://github.com/tkchia/gcc-ia16/pull/136) and [improvements](https://github.com/tkchia/gcc-ia16/issues/119) to make it more usable with fewer warts - special thanks to T.K.Chia for being patient with me.
 
