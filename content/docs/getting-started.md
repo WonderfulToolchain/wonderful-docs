@@ -12,7 +12,8 @@ weight: 1
 To install Wonderful on your computer, you will need:
 
 * a Linux distribution released sometime in the last decade (maybe a bit more),
-* a CPU architecture compatible with x86_64 or AArch64.
+* a CPU architecture compatible with x86_64 or AArch64,
+* the following command-line tools provided by your distribution: `bash`, `git`, `make`.
 
 ### Downloads
 
