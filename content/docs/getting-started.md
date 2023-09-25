@@ -52,11 +52,23 @@ To install Wonderful on your computer, you will need:
 * a recent version of Windows - Windows 10 and above are supported,
 * a CPU architecture compatible with x86_64.
 
-### Downloads
+### Installation instructions (Installer)
 
- * [Bootstrap (x86_64)](/bootstrap/wf-bootstrap-windows-x86_64.tar.gz)
+Required files:
 
-### Installation instructions
+ * [Installer (x86_64)](/bootstrap/wf-bootstrap-windows-x86_64.exe)
+
+1. Install [the MSYS2 environment](https://www.msys2.org/).
+2. Install the Wonderful toolchain from the above installer. (If you've installed MSYS2 to a different directory than `C:\msys64`, adjust it in the Wonderful installer to match.)
+3. Run `Wonderful Toolchain Shell` from the Start menu.
+
+This approach is a little experimental, so if it doesn't work for you, feel free to try the Manual steps below.
+
+### Installation instructions (Manual)
+
+Required files:
+
+ * [Bootstrap (x86_64, .tar.gz)](/bootstrap/wf-bootstrap-windows-x86_64.tar.gz)
 
 1. Install [the MSYS2 environment](https://www.msys2.org/).
 2. From the Start Menu, launch the `MSYS UCRT64` shell. This shell is used to interact with the toolchain (`make`, `wf-wswantool`, etc).
