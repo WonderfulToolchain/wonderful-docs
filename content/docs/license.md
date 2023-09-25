@@ -38,3 +38,8 @@ The tools are distributed under a variety of licenses. To learn the specific inf
 All of the libraries used on the wswan target also apply to the wwitch target, in addition to:
 
 * libww: [zlib license](https://github.com/WonderfulToolchain/target-wswan-syslibs/blob/main/LICENSE)
+
+## Documentation
+
+* wonderful.asie.pl: This website's text contents are available under the terms of the CC BY-SA 4.0 license.
+  * [The Swan Book](https://wonderful.asie.pl/doc/wswan/guide/): CC BY-SA 4.0 license for content (text, images, etc.); Creative Commons 0 for example code.
