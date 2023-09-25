@@ -59,12 +59,13 @@ To install Wonderful on your computer, you will need:
 ### Installation instructions
 
 1. Install [the MSYS2 environment](https://www.msys2.org/).
-2. Install some useful packages: `pacman -S base-devel ca-certificates mingw-w64-ucrt-x86_64-ca-certificates`.
-3. Create the `/opt/wonderful` directory: `mkdir /opt/wonderful`. Other installation locations are not supported at this time.
-4. Extract the bootstrap to `/opt/wonderful` (f.e. `cd /opt/wonderful/ && tar xzvf [path_to_bootstrap_tar_gz]`).
-5. Add `/opt/wonderful/bin` to *PATH* (f.e. `export PATH=/opt/wonderful/bin:$PATH`).
-6. Export *WONDERFUL_TOOLCHAIN* to point to `/opt/wonderful` (f.e. `export WONDERFUL_TOOLCHAIN=/opt/wonderful`).
-7. Run `wf-pacman -Syu` to synchronize and update the toolchain's package manager.
+2. From the Start Menu, launch the `MSYS UCRT64` shell. This shell is used to interact with the toolchain (`make`, `wf-wswantool`, etc).
+3. Install some useful packages: `pacman -S base-devel ca-certificates`.
+4. Create the `/opt/wonderful` directory: `mkdir /opt/wonderful`. Other installation locations are not supported at this time.
+5. Extract the bootstrap to `/opt/wonderful` (f.e. `cd /opt/wonderful/ && tar xzvf [path_to_bootstrap_tar_gz]`).
+6. Add `/opt/wonderful/bin` to *PATH* (f.e. `export PATH=/opt/wonderful/bin:$PATH`).
+7. Export *WONDERFUL_TOOLCHAIN* to point to `/opt/wonderful` (f.e. `export WONDERFUL_TOOLCHAIN=/opt/wonderful`). It is a good idea to add these exports to the end of `~/.profile` - this way, they will be automatically applied every time you restart the shell.
+8. Run `wf-pacman -Syu` to synchronize and update the toolchain's package manager.
 
 <!--    * [Bootstrap (ARMv6)](/bootstrap/wf-bootstrap-arm32v6.tar.gz) -->
 
