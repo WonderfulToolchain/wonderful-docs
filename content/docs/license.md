@@ -39,6 +39,10 @@ All of the libraries used on the wswan target also apply to the wwitch target, i
 
 * libww: [zlib license](https://github.com/WonderfulToolchain/target-wswan-syslibs/blob/main/LICENSE)
 
+## Third-party toolchains
+
+For third-party toolchains distributed as part of Wonderful (such as BlocksDS), please study their relevant documentation.
+
 ## Documentation
 
 * wonderful.asie.pl: This website's text contents are available under the terms of the CC BY-SA 4.0 license.
