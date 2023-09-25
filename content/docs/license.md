@@ -31,7 +31,8 @@ The tools are distributed under a variety of licenses. To learn the specific inf
   * `wsx/lzsa.h`: zlib license
   * `wsx/planar_unpack.h`: zlib license
   * `wsx/zx0.h`: zlib license
-* libww: [zlib license](https://github.com/WonderfulToolchain/target-wswan-syslibs/blob/main/LICENSE)
+
+The *libgcc* and *libc* libraries are linked by default to any C project using the wswan target. The other libraries listed are opt-in (for example, `-lws` is listed in the Makefile for linking libws with your program).
 
 ### wwitch target
 
