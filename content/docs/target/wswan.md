@@ -23,7 +23,7 @@ Examples and project templates are available in the [wf-wswan-examples](https://
 ## Wonderful-maintained tools
 
 * [BootFriend](/ws/bootfriend) - custom console firmware allowing fastboot and running code from WSC/SC internal RAM without a flash cartridge,
-* [CartFriend](https://github.com/WonderfullToolchain/ws-cartfriend) - custom flash cartridge firmware with a homebrew-centric design,
+* [CartFriend](https://github.com/WonderfulToolchain/ws-cartfriend) - custom flash cartridge firmware with a homebrew-centric design,
 * [ExtFriend](https://github.com/WonderfulToolchain/ws-extfriend) - DIY serial/headphone capture USB device, based on the RP2040/Raspberry Pi Pico.
 
 ## Toolchain overview
