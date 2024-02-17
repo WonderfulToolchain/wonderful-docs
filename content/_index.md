@@ -5,18 +5,21 @@ images:
   - logo-og.png
 ---
 
-# Welcome!
+# Hello!
 
 The Wonderful Toolchain is an assortment of development toolchains for a variety of retro and/or embedded platforms, with particular focus on console homebrew development - though really, it's all about whatever scratches an itch on a given day.
 
-If you'd like to try it out and/or learn more, why don't we [get started](/docs/getting-started)? Feel free to also check out [our Discord server](https://discord.gg/CR7MCZNurp)!
+Supported platforms include:
 
-## Targets
-
-* **[wswan](/docs/target/wswan)**: WonderSwan - functional, but not fully polished
-* **[wwitch](/docs/target/wswan#wonderwitch)**: [WonderWitch](http://wonderwitch.qute.co.jp/) - preliminary, but functional
+* **wswan** - WonderSwan/WonderWitch
 
 *This list is incomplete. [You can help by expanding it.](https://github.com/WonderfulToolchain)*
+
+If you'd like to try it out and/or learn more:
+
+* Why don't we [get started](/docs/getting-started)?
+* Read more on [our wiki](/wiki)!
+* Feel free to also check out [our Discord server](https://discord.gg/CR7MCZNurp)!
 
 ## Third-party toolchains
 

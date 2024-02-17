@@ -14,3 +14,9 @@ BookSearch = false
 
 [markup.goldmark.renderer]
 unsafe = true
+
+[menu]
+[[menu.after]]
+  name = "Wiki"
+  url = "https://wonderful.asie.pl/wiki"
+  weight = 10
